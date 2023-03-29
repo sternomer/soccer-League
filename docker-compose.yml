@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  
+
+  feature:
+    build: .
+    # image: ghcr.io/team-pandora/ts-template
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      PORT: 8000
+      MONGO_URI: mongodb://mongo:27017/teams
+      MONGO_FEATURES_COLLECTION_NAME: teams
+    ports:
+      - 8000:8000
